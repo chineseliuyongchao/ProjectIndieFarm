@@ -20,7 +20,7 @@ namespace ProjectlndieFram
             tileWords.x += grid.cellSize.x / 2;
             tileWords.y += grid.cellSize.y / 2;
             if (cellPosition.x < gridData.Width && cellPosition.x >= 0 && cellPosition.y < gridData.Height &&
-                cellPosition.y >= 0)
+                cellPosition.y >= 0) //选中地块
             {
                 TileSelectController.Instance.Show();
                 TileSelectController.Instance.Position(tileWords);
@@ -29,21 +29,21 @@ namespace ProjectlndieFram
             {
                 TileSelectController.Instance.Hide();
             }
-            
+
             if (Input.GetMouseButtonDown(0))
             {
                 if (cellPosition.x < gridData.Width && cellPosition.x >= 0 && cellPosition.y < gridData.Height &&
                     cellPosition.y >= 0)
                 {
-                    if (gridData[cellPosition.x, cellPosition.y] == null)
+                    if (gridData[cellPosition.x, cellPosition.y] == null) //翻地
                     {
                         tilemap.SetTile(cellPosition, grid.GetComponent<GridController>().tileBaseLand);
                         gridData[cellPosition.x, cellPosition.y] = new SoilData();
                     }
-                    else if (!gridData[cellPosition.x, cellPosition.y].HasSeed)
+                    else if (!gridData[cellPosition.x, cellPosition.y].HasPlant) //播种
                     {
                         ResController.Instance.seedPrefab.Instantiate().Position(tileWords);
-                        gridData[cellPosition.x, cellPosition.y].HasSeed = true;
+                        gridData[cellPosition.x, cellPosition.y].HasPlant = true;
                     }
                 }
             }
@@ -53,10 +53,24 @@ namespace ProjectlndieFram
                 if (cellPosition.x < gridData.Width && cellPosition.x >= 0 && cellPosition.y < gridData.Height &&
                     cellPosition.y >= 0)
                 {
-                    if (gridData[cellPosition.x, cellPosition.y] != null)
+                    if (gridData[cellPosition.x, cellPosition.y] != null) //清空地块
                     {
                         tilemap.SetTile(cellPosition, null);
                         gridData[cellPosition.x, cellPosition.y] = null;
+                    }
+                }
+            }
+
+            if (Input.GetKeyDown(KeyCode.E))
+            {
+                if (cellPosition.x < gridData.Width && cellPosition.x >= 0 && cellPosition.y < gridData.Height &&
+                    cellPosition.y >= 0)
+                {
+                    if (gridData[cellPosition.x, cellPosition.y] != null &&
+                        !gridData[cellPosition.x, cellPosition.y].Watered) //浇水
+                    {
+                        ResController.Instance.waterPrefab.Instantiate().Position(tileWords);
+                        gridData[cellPosition.x, cellPosition.y].Watered = true;
                     }
                 }
             }

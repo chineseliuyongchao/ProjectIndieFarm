@@ -9,12 +9,8 @@ namespace ProjectlndieFram
     public partial class ResController : ViewController, ISingleton
     {
         public GameObject seedPrefab;
+        public GameObject waterPrefab;
         public static ResController Instance => MonoSingletonProperty<ResController>.Instance;
-
-        void Start()
-        {
-            // Code Here
-        }
 
         public void OnSingletonInit()
         {

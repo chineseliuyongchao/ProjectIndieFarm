@@ -158,6 +158,7 @@ MonoBehaviour:
   GeneratePrefab: 0
   PrefabFolder: Assets/Art/Prefab
   seedPrefab: {fileID: 4795089531163489956, guid: 80c600272653bb24ea693585683554ff, type: 3}
+  waterPrefab: {fileID: 4661643484681880077, guid: 7ff75b934238a8143b6a429489801fe4, type: 3}
 --- !u!4 &105830114
 Transform:
   m_ObjectHideFlags: 0
@@ -680,7 +681,7 @@ TilemapRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: -1
   m_ChunkSize: {x: 32, y: 32, z: 32}
   m_ChunkCullingBounds: {x: 0, y: 0, z: 0}
   m_MaxChunkCount: 16
