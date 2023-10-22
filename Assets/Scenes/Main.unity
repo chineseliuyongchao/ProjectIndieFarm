@@ -189,6 +189,7 @@ GameObject:
   - component: {fileID: 548360369}
   - component: {fileID: 548360368}
   - component: {fileID: 548360367}
+  - component: {fileID: 548360371}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -536,6 +537,25 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &548360371
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 548360366}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 36d5d9ee3f728c5439e5a5e9b9e1bfc6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Namespace: ProjectlndieFram
+  ScriptName: Player
+  ScriptsFolder: Assets/Scripts/Game
+  GeneratePrefab: 0
+  PrefabFolder: Assets/Art/Prefab
+  grid: {fileID: 1756115400}
+  tilemap: {fileID: 1046975725}
 --- !u!1 &1046975722
 GameObject:
   m_ObjectHideFlags: 0
