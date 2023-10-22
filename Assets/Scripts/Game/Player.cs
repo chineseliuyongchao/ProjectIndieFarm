@@ -14,10 +14,24 @@ namespace ProjectlndieFram
 
         private void Update()
         {
+            var cellPosition = grid.WorldToCell(transform.position);
+            var gridData = grid.GetComponent<GridController>().MShowGrid;
+            var tileWords = grid.CellToWorld(cellPosition);
+            tileWords.x += grid.cellSize.x / 2;
+            tileWords.y += grid.cellSize.y / 2;
+            if (cellPosition.x < gridData.Width && cellPosition.x >= 0 && cellPosition.y < gridData.Height &&
+                cellPosition.y >= 0)
+            {
+                TileSelectController.Instance.Show();
+                TileSelectController.Instance.Position(tileWords);
+            }
+            else
+            {
+                TileSelectController.Instance.Hide();
+            }
+            
             if (Input.GetMouseButtonDown(0))
             {
-                var cellPosition = grid.WorldToCell(transform.position);
-                var gridData = grid.GetComponent<GridController>().MShowGrid;
                 if (cellPosition.x < gridData.Width && cellPosition.x >= 0 && cellPosition.y < gridData.Height &&
                     cellPosition.y >= 0)
                 {
@@ -28,9 +42,6 @@ namespace ProjectlndieFram
                     }
                     else if (!gridData[cellPosition.x, cellPosition.y].HasSeed)
                     {
-                        var tileWords = grid.CellToWorld(cellPosition);
-                        tileWords.x += grid.cellSize.x / 2;
-                        tileWords.y += grid.cellSize.y / 2;
                         ResController.Instance.seedPrefab.Instantiate().Position(tileWords);
                         gridData[cellPosition.x, cellPosition.y].HasSeed = true;
                     }
@@ -39,15 +50,13 @@ namespace ProjectlndieFram
 
             if (Input.GetMouseButtonDown(1))
             {
-                var cellPosition = grid.WorldToCell(transform.position);
-                var girdData = grid.GetComponent<GridController>().MShowGrid;
-                if (cellPosition.x < girdData.Width && cellPosition.x >= 0 && cellPosition.y < girdData.Height &&
+                if (cellPosition.x < gridData.Width && cellPosition.x >= 0 && cellPosition.y < gridData.Height &&
                     cellPosition.y >= 0)
                 {
-                    if (girdData[cellPosition.x, cellPosition.y] != null)
+                    if (gridData[cellPosition.x, cellPosition.y] != null)
                     {
                         tilemap.SetTile(cellPosition, null);
-                        girdData[cellPosition.x, cellPosition.y] = null;
+                        gridData[cellPosition.x, cellPosition.y] = null;
                     }
                 }
             }
