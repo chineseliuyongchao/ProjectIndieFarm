@@ -18,16 +18,12 @@ MonoBehaviour:
     GameObject: {fileID: 0}
     From: 0
     NameToFullName: []
-    BindInfos:
-    - TypeName: UnityEngine.Tilemaps.Tilemap
-      PathToRoot: Tilemap
-      MemberName: Tilemap
+    BindInfos: []
     ScriptsFolder: Assets/Scripts/Game
-    ClassName: GridController
+    ClassName: ResController
     Namespace: ProjectlndieFram
     MainCode: "using UnityEngine;\r\nusing QFramework;\r\n\r\nnamespace ProjectlndieFram\r\n{\r\n\tpublic
-      partial class GridController : ViewController\r\n\t{\r\n\t\tvoid Start()\r\n\t\t{\r\n\t\t\t//
+      partial class ResController : ViewController\r\n\t{\r\n\t\tvoid Start()\r\n\t\t{\r\n\t\t\t//
       Code Here\r\n\t\t}\r\n\t}\r\n}\r\n"
-    DesignerCode: "// Generate Id:4164e52b-cd8e-44f7-8654-3a8245d77784\r\nusing UnityEngine;\r\n\r\nnamespace
-      ProjectlndieFram\r\n{\r\n\tpublic partial class GridController\r\n\t{\r\n\r\n\t\tpublic
-      UnityEngine.Tilemaps.Tilemap Tilemap;\r\n\r\n\t}\r\n}\r\n"
+    DesignerCode: "// Generate Id:c494d462-cb34-4e77-85c7-0c19b16fb345\r\nusing UnityEngine;\r\n\r\nnamespace
+      ProjectlndieFram\r\n{\r\n\tpublic partial class ResController\r\n\t{\r\n\r\n\t}\r\n}\r\n"
