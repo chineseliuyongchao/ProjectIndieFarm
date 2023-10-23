@@ -1,5 +1,7 @@
+using System.Linq;
 using QFramework;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.Tilemaps;
 
 namespace ProjectlndieFram
@@ -12,8 +14,44 @@ namespace ProjectlndieFram
         public Grid grid;
         public Tilemap tilemap;
 
+        private void Start()
+        {
+            Global.Days.Register(day =>
+            {
+                var seeds = SceneManager.GetActiveScene().GetRootGameObjects()
+                    .Where(o => o.name.StartsWith("Seed"));
+                foreach (var seed in seeds)
+                {
+                    var cellPosition = grid.WorldToCell(seed.transform.position);
+                    var gridData = grid.GetComponent<GridController>().MShowGrid;
+                    if (gridData[cellPosition.x, cellPosition.y] != null &&
+                        gridData[cellPosition.x, cellPosition.y].Watered)
+                    {
+                        //播种并且浇水以后才能发芽
+                        ResController.Instance.smallPlantPrefab.Instantiate().Position(seed.transform.position);
+                        seed.DestroySelf();
+                    }
+                }
+            }).UnRegisterWhenGameObjectDestroyed(gameObject);
+        }
+
+        private void OnGUI()
+        {
+            IMGUIHelper.SetDesignResolution(640, 360);
+            GUILayout.Space(10);
+            GUILayout.BeginHorizontal();
+            GUILayout.Space(10);
+            GUILayout.Label("天数：" + Global.Days.Value);
+            GUILayout.EndHorizontal();
+        }
+
         private void Update()
         {
+            if (Input.GetKeyDown(KeyCode.F))
+            {
+                Global.Days.Value++;
+            }
+
             var cellPosition = grid.WorldToCell(transform.position);
             var gridData = grid.GetComponent<GridController>().MShowGrid;
             var tileWords = grid.CellToWorld(cellPosition);
