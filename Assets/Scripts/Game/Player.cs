@@ -18,19 +18,51 @@ namespace ProjectlndieFram
         {
             Global.Days.Register(day =>
             {
+                var soilDataS = grid.GetComponent<GridController>().MShowGrid;
+
+                var smallPlants = SceneManager.GetActiveScene().GetRootGameObjects()
+                    .Where(o => o.name.StartsWith("SmallPlant"));
+                foreach (var smallPlant in smallPlants)
+                {
+                    var cellPosition = grid.WorldToCell(smallPlant.transform.position);
+                    var soilData = grid.GetComponent<GridController>().MShowGrid[cellPosition.x, cellPosition.y];
+                    if (soilData != null && soilData.Watered && soilData.BudState)
+                    {
+                        //发芽并且浇水以后才能成熟
+                        ResController.Instance.ripePrefab.Instantiate().Position(smallPlant.transform.position);
+                        smallPlant.DestroySelf();
+                        soilData.BudState = false;
+                        soilData.RipeState = true;
+                    }
+                }
+
                 var seeds = SceneManager.GetActiveScene().GetRootGameObjects()
                     .Where(o => o.name.StartsWith("Seed"));
                 foreach (var seed in seeds)
                 {
                     var cellPosition = grid.WorldToCell(seed.transform.position);
-                    var gridData = grid.GetComponent<GridController>().MShowGrid;
-                    if (gridData[cellPosition.x, cellPosition.y] != null &&
-                        gridData[cellPosition.x, cellPosition.y].Watered)
+                    var soilData = grid.GetComponent<GridController>().MShowGrid[cellPosition.x, cellPosition.y];
+                    if (soilData != null && soilData.Watered && soilData.HasPlant)
                     {
                         //播种并且浇水以后才能发芽
                         ResController.Instance.smallPlantPrefab.Instantiate().Position(seed.transform.position);
                         seed.DestroySelf();
+                        soilData.BudState = true;
                     }
+                }
+
+                //每过一天把前一天浇水的状态清空
+                soilDataS.ForEach(data =>
+                {
+                    if (data != null)
+                    {
+                        data.Watered = false;
+                    }
+                });
+                foreach (var water in SceneManager.GetActiveScene().GetRootGameObjects()
+                             .Where(o => o.name.StartsWith("Water")))
+                {
+                    water.DestroySelf();
                 }
             }).UnRegisterWhenGameObjectDestroyed(gameObject);
         }
