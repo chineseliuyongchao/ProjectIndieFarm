@@ -22,34 +22,30 @@ namespace ProjectlndieFram
 
                 var smallPlants = SceneManager.GetActiveScene().GetRootGameObjects()
                     .Where(o => o.name.StartsWith("SmallPlant"));
-                foreach (var smallPlant in smallPlants)
-                {
-                    var cellPosition = grid.WorldToCell(smallPlant.transform.position);
-                    var soilData = grid.GetComponent<GridController>().MShowGrid[cellPosition.x, cellPosition.y];
-                    if (soilData != null && soilData.Watered && soilData.BudState)
-                    {
-                        //发芽并且浇水以后才能成熟
-                        ResController.Instance.ripePrefab.Instantiate().Position(smallPlant.transform.position);
-                        smallPlant.DestroySelf();
-                        soilData.BudState = false;
-                        soilData.RipeState = true;
-                    }
-                }
 
                 var seeds = SceneManager.GetActiveScene().GetRootGameObjects()
                     .Where(o => o.name.StartsWith("Seed"));
-                foreach (var seed in seeds)
+
+                PlantController.Instance.Plants.ForEach((x, y, plant) =>
                 {
-                    var cellPosition = grid.WorldToCell(seed.transform.position);
-                    var soilData = grid.GetComponent<GridController>().MShowGrid[cellPosition.x, cellPosition.y];
-                    if (soilData != null && soilData.Watered && soilData.HasPlant)
+                    if (plant)
                     {
-                        //播种并且浇水以后才能发芽
-                        ResController.Instance.smallPlantPrefab.Instantiate().Position(seed.transform.position);
-                        seed.DestroySelf();
-                        soilData.BudState = true;
+                        if (plant.PlantStates == PlantStates.Seed)
+                        {
+                            if (soilDataS[x, y].Watered)
+                            {
+                                plant.PlantStates = PlantStates.Bud;
+                            }
+                        }
+                        else if (plant.PlantStates == PlantStates.Bud)
+                        {
+                            if (soilDataS[x, y].Watered)
+                            {
+                                plant.PlantStates = PlantStates.Ripe;
+                            }
+                        }
                     }
-                }
+                });
 
                 //每过一天把前一天浇水的状态清空
                 soilDataS.ForEach(data =>
@@ -112,8 +108,12 @@ namespace ProjectlndieFram
                     }
                     else if (!gridData[cellPosition.x, cellPosition.y].HasPlant) //播种
                     {
-                        ResController.Instance.seedPrefab.Instantiate().Position(tileWords);
-                        gridData[cellPosition.x, cellPosition.y].HasPlant = true;
+                        var plantGameObj = ResController.Instance.plantPrefab.Instantiate().Position(tileWords);
+                        var plant = plantGameObj.GetComponent<Plant>();
+                        plant.xCell = cellPosition.x;
+                        plant.yCell = cellPosition.y;
+                        PlantController.Instance.Plants[cellPosition.x, cellPosition.y] = plant;
+                        plant.PlantStates = PlantStates.Seed;
                     }
                 }
             }

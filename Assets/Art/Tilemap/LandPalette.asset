@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: LandPalette
   m_EditorClassIdentifier: 
   m_Sprite: {fileID: 21300000, guid: 59596c89e7b7be747bc5feb71e77cc60, type: 3}
-  m_Color: {r: 0.7735849, g: 0.6710356, b: 0.23645425, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Transform:
     e00: 1
     e01: 0

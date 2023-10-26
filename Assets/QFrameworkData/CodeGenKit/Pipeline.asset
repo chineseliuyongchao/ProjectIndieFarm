@@ -15,15 +15,15 @@ MonoBehaviour:
   CurrentTask:
     ShowLog: 0
     Status: 1
-    GameObject: {fileID: 0}
+    GameObject: {fileID: 3361163951837083903, guid: c6cdb5bd3a5696647b9dd39f7d91e2b3, type: 3}
     From: 0
     NameToFullName: []
     BindInfos: []
     ScriptsFolder: Assets/Scripts/Game
-    ClassName: TileSelectController
+    ClassName: Plant
     Namespace: ProjectlndieFram
     MainCode: "using UnityEngine;\r\nusing QFramework;\r\n\r\nnamespace ProjectlndieFram\r\n{\r\n\tpublic
-      partial class TileSelectController : ViewController\r\n\t{\r\n\t\tvoid Start()\r\n\t\t{\r\n\t\t\t//
+      partial class Plant : ViewController\r\n\t{\r\n\t\tvoid Start()\r\n\t\t{\r\n\t\t\t//
       Code Here\r\n\t\t}\r\n\t}\r\n}\r\n"
-    DesignerCode: "// Generate Id:5f419417-6ff1-4529-b315-09be0d13fa8b\r\nusing UnityEngine;\r\n\r\nnamespace
-      ProjectlndieFram\r\n{\r\n\tpublic partial class TileSelectController\r\n\t{\r\n\r\n\t}\r\n}\r\n"
+    DesignerCode: "// Generate Id:b183e4de-6005-470a-8009-57d5ccb067bf\r\nusing UnityEngine;\r\n\r\nnamespace
+      ProjectlndieFram\r\n{\r\n\tpublic partial class Plant\r\n\t{\r\n\r\n\t}\r\n}\r\n"

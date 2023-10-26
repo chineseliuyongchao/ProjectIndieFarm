@@ -12,14 +12,6 @@
         /// </summary>
         public bool Watered { get; set; }
 
-        /// <summary>
-        /// 是否发芽
-        /// </summary>
-        public bool BudState { get; set; }
-
-        /// <summary>
-        /// 是否成熟
-        /// </summary>
-        public bool RipeState { get; set; }
+        public PlantStates PlantStates { get; set; } = PlantStates.None;
     }
 }

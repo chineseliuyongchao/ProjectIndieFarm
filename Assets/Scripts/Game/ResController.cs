@@ -9,24 +9,29 @@ namespace ProjectlndieFram
     public partial class ResController : ViewController, ISingleton
     {
         /// <summary>
-        /// 种子
-        /// </summary>
-        public GameObject seedPrefab;
-
-        /// <summary>
         /// 水
         /// </summary>
         public GameObject waterPrefab;
 
         /// <summary>
-        /// 发芽的植物
+        /// 植物
         /// </summary>
-        public GameObject smallPlantPrefab;
+        public GameObject plantPrefab;
 
         /// <summary>
-        /// 成熟的植物
+        /// 种子贴图
         /// </summary>
-        public GameObject ripePrefab;
+        public Sprite seedSprite;
+
+        /// <summary>
+        /// 发芽植物贴图
+        /// </summary>
+        public Sprite budSprite;
+
+        /// <summary>
+        /// 成熟植物贴图
+        /// </summary>
+        public Sprite ripeSprite;
 
         public static ResController Instance => MonoSingletonProperty<ResController>.Instance;
 

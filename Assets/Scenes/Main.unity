@@ -159,8 +159,9 @@ MonoBehaviour:
   PrefabFolder: Assets/Art/Prefab
   seedPrefab: {fileID: 4795089531163489956, guid: 80c600272653bb24ea693585683554ff, type: 3}
   waterPrefab: {fileID: 4661643484681880077, guid: 7ff75b934238a8143b6a429489801fe4, type: 3}
-  smallPlantPrefab: {fileID: 3361163951837083903, guid: 46a86876d3da1e9488cddd4cd5d06977, type: 3}
+  budPrefab: {fileID: 3361163951837083903, guid: 46a86876d3da1e9488cddd4cd5d06977, type: 3}
   ripePrefab: {fileID: 892080338339304544, guid: 1c3ffbfd8eed8a44f9ded3760951043f, type: 3}
+  plantPrefab: {fileID: 3361163951837083903, guid: c6cdb5bd3a5696647b9dd39f7d91e2b3, type: 3}
 --- !u!4 &105830114
 Transform:
   m_ObjectHideFlags: 0
@@ -609,6 +610,55 @@ MonoBehaviour:
   PrefabFolder: Assets/Art/Prefab
   grid: {fileID: 1756115400}
   tilemap: {fileID: 1046975725}
+--- !u!1 &794204540
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 794204542}
+  - component: {fileID: 794204541}
+  m_Layer: 0
+  m_Name: PlantController
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &794204541
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 794204540}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4892f1acd4ed46f4a8cd1c293ec23db9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Namespace: ProjectlndieFram
+  ScriptName: PlantController
+  ScriptsFolder: Assets/Scripts/Game
+  GeneratePrefab: 0
+  PrefabFolder: Assets/Art/Prefab
+--- !u!4 &794204542
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 794204540}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1046975722
 GameObject:
   m_ObjectHideFlags: 0
@@ -739,7 +789,7 @@ Tilemap:
       e33: 1
   m_TileColorArray:
   - m_RefCount: 1
-    m_Data: {r: 0.7735849, g: 0.6710356, b: 0.23645425, a: 1}
+    m_Data: {r: 1, g: 1, b: 1, a: 1}
   m_TileObjectToInstantiateArray: []
   m_AnimationFrameRate: 1
   m_Color: {r: 1, g: 1, b: 1, a: 1}
