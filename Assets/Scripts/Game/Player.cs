@@ -1,5 +1,6 @@
 using System.Linq;
 using QFramework;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.Tilemaps;
@@ -74,6 +75,14 @@ namespace ProjectlndieFram
             GUILayout.BeginHorizontal();
             GUILayout.Space(10);
             GUILayout.Label("果子：" + Global.FruitCount.Value);
+            GUILayout.EndHorizontal();
+            GUILayout.BeginHorizontal();
+            GUILayout.Space(10);
+            GUILayout.Label("下一天：F");
+            GUILayout.EndHorizontal();
+            GUILayout.BeginHorizontal();
+            GUILayout.Space(10);
+            GUILayout.Label("浇水：E");
             GUILayout.EndHorizontal();
         }
 
@@ -159,6 +168,11 @@ namespace ProjectlndieFram
                         gridData[cellPosition.x, cellPosition.y].Watered = true;
                     }
                 }
+            }
+
+            if (Input.GetKeyDown(KeyCode.Return))
+            {
+                SceneManager.LoadScene("PassScene");
             }
         }
     }

@@ -162,6 +162,7 @@ MonoBehaviour:
   seedSprite: {fileID: 21300000, guid: b16a12a500f90ba41aefba752e1ec762, type: 3}
   budSprite: {fileID: 21300000, guid: f416e87b981aad94298bc4c2b7195c60, type: 3}
   ripeSprite: {fileID: 21300000, guid: 69d90246c9dbc1a4c86866d07a678611, type: 3}
+  oldSprite: {fileID: 21300000, guid: 6d3b046db128bed48b1d8f7e118a8640, type: 3}
 --- !u!4 &105830114
 Transform:
   m_ObjectHideFlags: 0
