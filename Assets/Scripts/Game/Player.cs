@@ -1,6 +1,5 @@
 using System.Linq;
 using QFramework;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.Tilemaps;
@@ -90,11 +89,11 @@ namespace ProjectlndieFram
 
             GUILayout.BeginHorizontal();
             GUILayout.Space(10);
-            GUILayout.Label($"当前工具：{Global.CurrentToolName.Value}");
+            GUILayout.Label($"当前工具：{Constant.DisplayName(Global.CurrentTool.Value)}");
             GUILayout.EndHorizontal();
 
             GUILayout.FlexibleSpace();
-            GUI.Label(new Rect(10, 360 - 24, 200, 24), "[1]：手，[2]：锄头");
+            GUI.Label(new Rect(10, 360 - 24, 200, 24), "[1]：手，[2]：锄头，[3]：种子");
         }
 
         private void Update()
@@ -112,8 +111,23 @@ namespace ProjectlndieFram
             if (cellPosition.x < gridData.Width && cellPosition.x >= 0 && cellPosition.y < gridData.Height &&
                 cellPosition.y >= 0) //选中地块
             {
-                TileSelectController.Instance.Show();
-                TileSelectController.Instance.Position(tileWords);
+                if (gridData[cellPosition.x, cellPosition.y] == null &&
+                    Global.CurrentTool.Value.Equals(Constant.TOOL_SHOVEL))
+                {
+                    TileSelectController.Instance.Show();
+                    TileSelectController.Instance.Position(tileWords);
+                }
+                else if (gridData[cellPosition.x, cellPosition.y] != null &&
+                         !gridData[cellPosition.x, cellPosition.y].HasPlant &&
+                         Global.CurrentTool.Value == Constant.TOOL_SEED)
+                {
+                    TileSelectController.Instance.Show();
+                    TileSelectController.Instance.Position(tileWords);
+                }
+                else
+                {
+                    TileSelectController.Instance.Hide();
+                }
             }
             else
             {
@@ -126,13 +140,14 @@ namespace ProjectlndieFram
                     cellPosition.y >= 0)
                 {
                     if (gridData[cellPosition.x, cellPosition.y] == null &&
-                        Global.CurrentToolName.Value.Equals("锄头")) //翻地
+                        Global.CurrentTool.Value.Equals(Constant.TOOL_SHOVEL)) //翻地
                     {
                         tilemap.SetTile(cellPosition, grid.GetComponent<GridController>().tileBaseLand);
                         gridData[cellPosition.x, cellPosition.y] = new SoilData();
                     }
                     else if (gridData[cellPosition.x, cellPosition.y] != null &&
-                             !gridData[cellPosition.x, cellPosition.y].HasPlant) //播种
+                             !gridData[cellPosition.x, cellPosition.y].HasPlant &&
+                             Global.CurrentTool.Value == Constant.TOOL_SEED) //播种
                     {
                         var plantGameObj = ResController.Instance.plantPrefab.Instantiate().Position(tileWords);
                         var plant = plantGameObj.GetComponent<Plant>();
@@ -191,12 +206,17 @@ namespace ProjectlndieFram
 
             if (Input.GetKeyDown(KeyCode.Alpha1))
             {
-                Global.CurrentToolName.Value = "手";
+                Global.CurrentTool.Value = Constant.TOOL_HAND;
             }
 
             if (Input.GetKeyDown(KeyCode.Alpha2))
             {
-                Global.CurrentToolName.Value = "锄头";
+                Global.CurrentTool.Value = Constant.TOOL_SHOVEL;
+            }
+
+            if (Input.GetKeyDown(KeyCode.Alpha3))
+            {
+                Global.CurrentTool.Value = Constant.TOOL_SEED;
             }
         }
     }
