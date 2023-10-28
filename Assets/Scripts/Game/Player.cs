@@ -202,11 +202,6 @@ namespace ProjectlndieFram
                 }
             }
 
-            if (Input.GetKeyDown(KeyCode.Return))
-            {
-                SceneManager.LoadScene("PassScene");
-            }
-
             if (Input.GetKeyDown(KeyCode.Alpha1))
             {
                 Global.CurrentTool.Value = Constant.TOOL_HAND;

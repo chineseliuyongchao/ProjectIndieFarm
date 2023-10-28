@@ -20,10 +20,10 @@ MonoBehaviour:
     NameToFullName: []
     BindInfos: []
     ScriptsFolder: Assets/Scripts/Game
-    ClassName: GameRestartController
+    ClassName: GameController
     Namespace: ProjectlndieFram
     MainCode: "using UnityEngine;\r\nusing QFramework;\r\n\r\nnamespace ProjectlndieFram\r\n{\r\n\tpublic
-      partial class GameRestartController : ViewController\r\n\t{\r\n\t\tvoid Start()\r\n\t\t{\r\n\t\t\t//
+      partial class GameController : ViewController\r\n\t{\r\n\t\tvoid Start()\r\n\t\t{\r\n\t\t\t//
       Code Here\r\n\t\t}\r\n\t}\r\n}\r\n"
-    DesignerCode: "// Generate Id:5372c5b9-3fef-4c67-bfa3-354d3566f891\r\nusing UnityEngine;\r\n\r\nnamespace
-      ProjectlndieFram\r\n{\r\n\tpublic partial class GameRestartController\r\n\t{\r\n\r\n\t}\r\n}\r\n"
+    DesignerCode: "// Generate Id:17f1e34a-e790-4234-9633-fdaa2f5f28a9\r\nusing UnityEngine;\r\n\r\nnamespace
+      ProjectlndieFram\r\n{\r\n\tpublic partial class GameController\r\n\t{\r\n\r\n\t}\r\n}\r\n"
