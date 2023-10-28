@@ -30,12 +30,17 @@ namespace ProjectlndieFram
         /// <summary>
         /// 工具常量锄头
         /// </summary>
-        public const string TOOL_SHOVEL = "shovel";
+        public const string TOOL_SHOVEL = "toolShovel";
 
         /// <summary>
         /// 工具常量种子
         /// </summary>
-        public const string TOOL_SEED = "seed";
+        public const string TOOL_SEED = "toolSeed";
+
+        /// <summary>
+        /// 工具常量水桶
+        /// </summary>
+        public const string TOOL_BUCKET = "toolBucket";
 
         public static string DisplayName(string tool)
         {
@@ -47,6 +52,8 @@ namespace ProjectlndieFram
                     return "锄头";
                 case TOOL_SEED:
                     return "种子";
+                case TOOL_BUCKET:
+                    return "水桶";
             }
 
             return "";

@@ -84,16 +84,11 @@ namespace ProjectlndieFram
 
             GUILayout.BeginHorizontal();
             GUILayout.Space(10);
-            GUILayout.Label("浇水：E");
-            GUILayout.EndHorizontal();
-
-            GUILayout.BeginHorizontal();
-            GUILayout.Space(10);
             GUILayout.Label($"当前工具：{Constant.DisplayName(Global.CurrentTool.Value)}");
             GUILayout.EndHorizontal();
 
             GUILayout.FlexibleSpace();
-            GUI.Label(new Rect(10, 360 - 24, 200, 24), "[1]：手，[2]：锄头，[3]：种子");
+            GUI.Label(new Rect(10, 360 - 24, 640, 24), "[1]：手，[2]：锄头，[3]：种子，[4]：水桶");
         }
 
         private void Update()
@@ -120,6 +115,20 @@ namespace ProjectlndieFram
                 else if (gridData[cellPosition.x, cellPosition.y] != null &&
                          !gridData[cellPosition.x, cellPosition.y].HasPlant &&
                          Global.CurrentTool.Value == Constant.TOOL_SEED)
+                {
+                    TileSelectController.Instance.Show();
+                    TileSelectController.Instance.Position(tileWords);
+                }
+                else if (gridData[cellPosition.x, cellPosition.y] != null &&
+                         !gridData[cellPosition.x, cellPosition.y].Watered &&
+                         Global.CurrentTool.Value == Constant.TOOL_BUCKET) //浇水
+                {
+                    TileSelectController.Instance.Show();
+                    TileSelectController.Instance.Position(tileWords);
+                }
+                else if (gridData[cellPosition.x, cellPosition.y] != null &&
+                         gridData[cellPosition.x, cellPosition.y].PlantStates == PlantStates.Ripe &&
+                         Global.CurrentTool.Value == Constant.TOOL_HAND)
                 {
                     TileSelectController.Instance.Show();
                     TileSelectController.Instance.Position(tileWords);
@@ -158,7 +167,15 @@ namespace ProjectlndieFram
                         gridData[cellPosition.x, cellPosition.y].HasPlant = true;
                     }
                     else if (gridData[cellPosition.x, cellPosition.y] != null &&
-                             gridData[cellPosition.x, cellPosition.y].PlantStates == PlantStates.Ripe)
+                             !gridData[cellPosition.x, cellPosition.y].Watered &&
+                             Global.CurrentTool.Value == Constant.TOOL_BUCKET) //浇水
+                    {
+                        ResController.Instance.waterPrefab.Instantiate().Position(tileWords);
+                        gridData[cellPosition.x, cellPosition.y].Watered = true;
+                    }
+                    else if (gridData[cellPosition.x, cellPosition.y] != null &&
+                             gridData[cellPosition.x, cellPosition.y].PlantStates == PlantStates.Ripe &&
+                             Global.CurrentTool.Value == Constant.TOOL_HAND)
                     {
                         var plantGameObj = PlantController.Instance.Plants[cellPosition.x, cellPosition.y];
                         var plant = plantGameObj.GetComponent<Plant>();
@@ -185,20 +202,6 @@ namespace ProjectlndieFram
                 }
             }
 
-            if (Input.GetKeyDown(KeyCode.E))
-            {
-                if (cellPosition.x < gridData.Width && cellPosition.x >= 0 && cellPosition.y < gridData.Height &&
-                    cellPosition.y >= 0)
-                {
-                    if (gridData[cellPosition.x, cellPosition.y] != null &&
-                        !gridData[cellPosition.x, cellPosition.y].Watered) //浇水
-                    {
-                        ResController.Instance.waterPrefab.Instantiate().Position(tileWords);
-                        gridData[cellPosition.x, cellPosition.y].Watered = true;
-                    }
-                }
-            }
-
             if (Input.GetKeyDown(KeyCode.Return))
             {
                 SceneManager.LoadScene("PassScene");
@@ -217,6 +220,11 @@ namespace ProjectlndieFram
             if (Input.GetKeyDown(KeyCode.Alpha3))
             {
                 Global.CurrentTool.Value = Constant.TOOL_SEED;
+            }
+
+            if (Input.GetKeyDown(KeyCode.Alpha4))
+            {
+                Global.CurrentTool.Value = Constant.TOOL_BUCKET;
             }
         }
     }
