@@ -38,6 +38,11 @@ namespace ProjectlndieFram
         /// <summary>
         /// 成熟
         /// </summary>
-        Ripe
+        Ripe,
+
+        /// <summary>
+        /// 收获后
+        /// </summary>
+        Old
     }
 }

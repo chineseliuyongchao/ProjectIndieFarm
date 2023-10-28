@@ -33,6 +33,11 @@ namespace ProjectlndieFram
         /// </summary>
         public Sprite ripeSprite;
 
+        /// <summary>
+        /// 收获后的植物
+        /// </summary>
+        public Sprite oldSprite;
+
         public static ResController Instance => MonoSingletonProperty<ResController>.Instance;
 
         public void OnSingletonInit()

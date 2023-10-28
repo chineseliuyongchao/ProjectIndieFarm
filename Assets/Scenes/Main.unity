@@ -157,11 +157,11 @@ MonoBehaviour:
   ScriptsFolder: Assets/Scripts/Game
   GeneratePrefab: 0
   PrefabFolder: Assets/Art/Prefab
-  seedPrefab: {fileID: 4795089531163489956, guid: 80c600272653bb24ea693585683554ff, type: 3}
   waterPrefab: {fileID: 4661643484681880077, guid: 7ff75b934238a8143b6a429489801fe4, type: 3}
-  budPrefab: {fileID: 3361163951837083903, guid: 46a86876d3da1e9488cddd4cd5d06977, type: 3}
-  ripePrefab: {fileID: 892080338339304544, guid: 1c3ffbfd8eed8a44f9ded3760951043f, type: 3}
   plantPrefab: {fileID: 3361163951837083903, guid: c6cdb5bd3a5696647b9dd39f7d91e2b3, type: 3}
+  seedSprite: {fileID: 21300000, guid: b16a12a500f90ba41aefba752e1ec762, type: 3}
+  budSprite: {fileID: 21300000, guid: f416e87b981aad94298bc4c2b7195c60, type: 3}
+  ripeSprite: {fileID: 21300000, guid: 69d90246c9dbc1a4c86866d07a678611, type: 3}
 --- !u!4 &105830114
 Transform:
   m_ObjectHideFlags: 0

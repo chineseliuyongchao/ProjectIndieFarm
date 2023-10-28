@@ -7,6 +7,11 @@ namespace ProjectlndieFram
         /// <summary>
         /// 记录天数，默认从第一天开始
         /// </summary>
-        public static BindableProperty<int> Days = new BindableProperty<int>(1);
+        public static BindableProperty<int> Days = new(1);
+
+        /// <summary>
+        /// 结果数量
+        /// </summary>
+        public static BindableProperty<int> FruitCount = new(0);
     }
 }

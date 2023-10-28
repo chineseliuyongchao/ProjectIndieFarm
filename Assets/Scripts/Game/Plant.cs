@@ -26,8 +26,11 @@ namespace ProjectlndieFram
                         case PlantStates.Seed:
                             GetComponent<SpriteRenderer>().sprite = ResController.Instance.seedSprite;
                             break;
+                        case PlantStates.Old:
+                            GetComponent<SpriteRenderer>().sprite = ResController.Instance.oldSprite;
+                            break;
                     }
-                    
+
                     FindObjectOfType<GridController>().MShowGrid[xCell, yCell].PlantStates = value;
                 }
             }

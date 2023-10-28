@@ -71,6 +71,10 @@ namespace ProjectlndieFram
             GUILayout.Space(10);
             GUILayout.Label("天数：" + Global.Days.Value);
             GUILayout.EndHorizontal();
+            GUILayout.BeginHorizontal();
+            GUILayout.Space(10);
+            GUILayout.Label("果子：" + Global.FruitCount.Value);
+            GUILayout.EndHorizontal();
         }
 
         private void Update()
@@ -114,6 +118,14 @@ namespace ProjectlndieFram
                         plant.yCell = cellPosition.y;
                         PlantController.Instance.Plants[cellPosition.x, cellPosition.y] = plant;
                         plant.PlantStates = PlantStates.Seed;
+                        gridData[cellPosition.x, cellPosition.y].HasPlant = true;
+                    }
+                    else if (gridData[cellPosition.x, cellPosition.y].PlantStates == PlantStates.Ripe)
+                    {
+                        var plantGameObj = PlantController.Instance.Plants[cellPosition.x, cellPosition.y];
+                        var plant = plantGameObj.GetComponent<Plant>();
+                        plant.PlantStates = PlantStates.Old;
+                        Global.FruitCount.Value++;
                     }
                 }
             }
@@ -127,6 +139,10 @@ namespace ProjectlndieFram
                     {
                         tilemap.SetTile(cellPosition, null);
                         gridData[cellPosition.x, cellPosition.y] = null;
+                        if (PlantController.Instance.Plants[cellPosition.x, cellPosition.y] != null)
+                        {
+                            PlantController.Instance.Plants[cellPosition.x, cellPosition.y].gameObject.DestroySelf();
+                        }
                     }
                 }
             }
