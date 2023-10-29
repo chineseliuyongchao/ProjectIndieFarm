@@ -5,10 +5,7 @@
     /// </summary>
     public class ChallengeHarvestFirstFruit : Challenge
     {
-        public ChallengeHarvestFirstFruit()
-        {
-            Name = "ChallengeHarvestFirstFruit";
-        }
+        public override string Name { get; } = "获得第一个果实";
 
         public override void OnStart()
         {

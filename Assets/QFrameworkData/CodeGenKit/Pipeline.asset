@@ -25,5 +25,5 @@ MonoBehaviour:
     MainCode: "using UnityEngine;\r\nusing QFramework;\r\n\r\nnamespace ProjectlndieFram\r\n{\r\n\tpublic
       partial class ChallengeController : ViewController\r\n\t{\r\n\t\tvoid Start()\r\n\t\t{\r\n\t\t\t//
       Code Here\r\n\t\t}\r\n\t}\r\n}\r\n"
-    DesignerCode: "// Generate Id:0bb129e2-497d-401f-8b32-ab45e73d1f14\r\nusing UnityEngine;\r\n\r\nnamespace
+    DesignerCode: "// Generate Id:cb550c26-ce37-49b4-ac8c-2549d606062c\r\nusing UnityEngine;\r\n\r\nnamespace
       ProjectlndieFram\r\n{\r\n\tpublic partial class ChallengeController\r\n\t{\r\n\r\n\t}\r\n}\r\n"

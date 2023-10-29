@@ -5,10 +5,7 @@
     /// </summary>
     public class ChallengeRipeAndHarvestTwoFruitsInOneDay : Challenge
     {
-        public ChallengeRipeAndHarvestTwoFruitsInOneDay()
-        {
-            Name = "ChallengeRipeAndHarvestTwoFruitsInOneDay";
-        }
+        public override string Name { get; } = "在同一天成熟并且收集两个果实";
 
         public override void OnStart()
         {

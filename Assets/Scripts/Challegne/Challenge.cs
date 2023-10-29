@@ -19,7 +19,7 @@ namespace ProjectlndieFram
         /// <summary>
         /// 挑战的名字
         /// </summary>
-        public string Name;
+        public abstract string Name { get; }
 
         /// <summary>
         /// 开始挑战

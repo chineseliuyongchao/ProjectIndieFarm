@@ -1,14 +1,11 @@
 ﻿namespace ProjectlndieFram
 {
     /// <summary>
-    /// 在同一天成熟并且收集两个果实
+    /// 在同一天成熟并且收集五个果实
     /// </summary>
     public class ChallengeRipeAndHarvestFiveFruitsInOneDay : Challenge
     {
-        public ChallengeRipeAndHarvestFiveFruitsInOneDay()
-        {
-            Name = "ChallengeRipeAndHarvestFiveFruitsInOneDay";
-        }
+        public override string Name { get; } = "在同一天成熟并且收集五个果实";
 
         public override void OnStart()
         {
