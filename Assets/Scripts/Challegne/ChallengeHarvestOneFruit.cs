@@ -1,11 +1,11 @@
 ﻿namespace ProjectlndieFram
 {
     /// <summary>
-    /// 获得第一个果实
+    /// 获得一个果实
     /// </summary>
-    public class ChallengeHarvestFirstFruit : Challenge
+    public class ChallengeHarvestOneFruit : Challenge
     {
-        public override string Name { get; } = "获得第一个果实";
+        public override string Name { get; } = "获得一个果实";
 
         public override void OnStart()
         {
@@ -13,7 +13,7 @@
 
         public override bool CheckFinish()
         {
-            return Global.FruitCount.Value > 0;
+            return Global.Days.Value > StartDate && Global.FruitCountOneDay.Value > 0;
         }
 
         public override void OnFinish()

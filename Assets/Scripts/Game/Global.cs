@@ -11,9 +11,14 @@ namespace ProjectlndieFram
         public static BindableProperty<int> Days = new(1);
 
         /// <summary>
-        /// 结果数量
+        /// 收获果实数量
         /// </summary>
         public static BindableProperty<int> FruitCount = new(0);
+
+        /// <summary>
+        /// 一天收获果实数量
+        /// </summary>
+        public static BindableProperty<int> FruitCountOneDay = new(0);
 
         /// <summary>
         /// 当前工具
@@ -21,19 +26,24 @@ namespace ProjectlndieFram
         public static BindableProperty<string> CurrentTool = new(Constant.TOOL_HAND);
 
         /// <summary>
-        /// 当前成熟的数量
-        /// </summary>
-        public static BindableProperty<int> RipeAndHarvestCountInCurrentDay = new(0);
-
-        /// <summary>
         /// 存放所有挑战
         /// </summary>
         public static List<Challenge> Challenges = new()
         {
-            new ChallengeHarvestFirstFruit(),
+            new ChallengeHarvestOneFruit(),
             new ChallengeRipeAndHarvestTwoFruitsInOneDay(),
             new ChallengeRipeAndHarvestFiveFruitsInOneDay()
         };
+
+        /// <summary>
+        /// 存放所有激活挑战
+        /// </summary>
+        public static List<Challenge> ActiveChallenges = new();
+
+        /// <summary>
+        /// 存放所有完成挑战
+        /// </summary>
+        public static List<Challenge> FinishChallenges = new();
 
         /// <summary>
         /// 收割植物的事件

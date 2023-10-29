@@ -13,7 +13,7 @@
 
         public override bool CheckFinish()
         {
-            return Global.RipeAndHarvestCountInCurrentDay.Value >= 5;
+            return Global.Days.Value > StartDate && Global.FruitCountOneDay.Value >= 5;
         }
 
         public override void OnFinish()

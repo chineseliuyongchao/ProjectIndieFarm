@@ -18,7 +18,7 @@ namespace ProjectlndieFram
         {
             Global.Days.Register(day =>
             {
-                Global.RipeAndHarvestCountInCurrentDay.Value = 0;
+                Global.FruitCountOneDay.Value = 0;
                 var soilDataS = grid.GetComponent<GridController>().MShowGrid;
                 PlantController.Instance.Plants.ForEach((x, y, plant) =>
                 {
@@ -176,6 +176,7 @@ namespace ProjectlndieFram
                         var plant = plantGameObj.GetComponent<Plant>();
                         plant.PlantStates = PlantStates.Old;
                         Global.FruitCount.Value++;
+                        Global.FruitCountOneDay.Value++;
                     }
                 }
             }

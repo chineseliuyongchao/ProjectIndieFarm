@@ -1,6 +1,5 @@
 using System.Linq;
 using QFramework;
-using UnityEngine;
 using UnityEngine.SceneManagement;
 
 namespace ProjectlndieFram
@@ -12,17 +11,10 @@ namespace ProjectlndieFram
     {
         private void Start()
         {
-            Global.OnPlantHarvest.Register(plant =>
-            {
-                if (plant.RipeDay == Global.Days.Value) //当天有两个果子同时成熟并且收获就可以通关
-                {
-                    Global.RipeAndHarvestCountInCurrentDay.Value++;
-                }
-            }).UnRegisterWhenGameObjectDestroyed(gameObject);
+            Global.ActiveChallenges.Add(Global.Challenges.GetRandomItem());
             Global.OnChallengeFinish.Register(challenge =>
                 {
-                    Debug.Log("challengeFinish:  " + challenge.Name);
-                    if (Global.Challenges.All(challenge => challenge.ChallengeStates == ChallengeStates.FINISHED))
+                    if (Global.Challenges.All(c => c.ChallengeStates == ChallengeStates.FINISHED))
                     {
                         ActionKit.Delay(1, () => { SceneManager.LoadScene("PassScene"); }).Start(this);
                     }
@@ -32,11 +24,13 @@ namespace ProjectlndieFram
 
         private void Update()
         {
-            foreach (var challenge in Global.Challenges.Where(challenge =>
-                         challenge.ChallengeStates != ChallengeStates.FINISHED))
+            bool hasFinish = false;
+            foreach (var challenge in Global.ActiveChallenges)
             {
+                //在这里进行挑战完成检测
                 if (challenge.ChallengeStates == ChallengeStates.NO_START)
                 {
+                    challenge.StartDate = Global.Days.Value;
                     challenge.OnStart();
                     challenge.ChallengeStates = ChallengeStates.STARTED;
                 }
@@ -47,8 +41,22 @@ namespace ProjectlndieFram
                         challenge.OnFinish();
                         challenge.ChallengeStates = ChallengeStates.FINISHED;
                         Global.OnChallengeFinish.Trigger(challenge);
+                        Global.FinishChallenges.Add(challenge);
+                        hasFinish = true;
                     }
                 }
+            }
+
+            if (hasFinish)
+            {
+                Global.ActiveChallenges.RemoveAll(c => c.ChallengeStates == ChallengeStates.FINISHED);
+            }
+
+            if (Global.ActiveChallenges.Count == 0 && Global.FinishChallenges.Count != Global.Challenges.Count)
+            {
+                Global.ActiveChallenges.Add(Global.Challenges
+                    .Where(c => c.ChallengeStates == ChallengeStates.NO_START).ToList()
+                    .GetRandomItem());
             }
         }
     }
