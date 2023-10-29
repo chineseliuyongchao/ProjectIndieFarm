@@ -3,11 +3,11 @@
     /// <summary>
     /// 在同一天成熟并且收集两个果实
     /// </summary>
-    public class ChallengeRipeAndHarvestTwoFruitsInOneDay : Challenge
+    public class ChallengeRipeAndHarvestFiveFruitsInOneDay : Challenge
     {
-        public ChallengeRipeAndHarvestTwoFruitsInOneDay()
+        public ChallengeRipeAndHarvestFiveFruitsInOneDay()
         {
-            Name = "ChallengeRipeAndHarvestTwoFruitsInOneDay";
+            Name = "ChallengeRipeAndHarvestFiveFruitsInOneDay";
         }
 
         public override void OnStart()
@@ -16,7 +16,7 @@
 
         public override bool CheckFinish()
         {
-            return Global.RipeAndHarvestCountInCurrentDay.Value >= 2;
+            return Global.RipeAndHarvestCountInCurrentDay.Value >= 5;
         }
 
         public override void OnFinish()

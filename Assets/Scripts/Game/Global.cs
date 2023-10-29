@@ -28,12 +28,11 @@ namespace ProjectlndieFram
         /// <summary>
         /// 存放所有挑战
         /// </summary>
-        public static List<Challenge> Challenges = new List<Challenge>()
+        public static List<Challenge> Challenges = new()
         {
-            new ChallengeRipeAndHarvestTwoFruitsInOneDay()
-            {
-                Name = "ChallengeRipeAndHarvestTwoFruitsInOneDay"
-            }
+            new ChallengeHarvestFirstFruit(),
+            new ChallengeRipeAndHarvestTwoFruitsInOneDay(),
+            new ChallengeRipeAndHarvestFiveFruitsInOneDay()
         };
 
         /// <summary>
