@@ -7,6 +7,17 @@ namespace ProjectlndieFram
     {
         private PlantStates _plantStates = PlantStates.None;
 
+        /// <summary>
+        /// 成熟的日期
+        /// </summary>
+        private int _ripeDay;
+
+        public int RipeDay
+        {
+            get => _ripeDay;
+            set => _ripeDay = value;
+        }
+
         public PlantStates PlantStates
         {
             get => _plantStates;
@@ -14,6 +25,11 @@ namespace ProjectlndieFram
             {
                 if (_plantStates != value)
                 {
+                    if (_plantStates == PlantStates.Bud && value == PlantStates.Ripe)
+                    {
+                        _ripeDay = Global.Days.Value;
+                    }
+
                     _plantStates = value;
                     switch (value)
                     {

@@ -18,6 +18,11 @@ namespace ProjectlndieFram
         /// 当前工具
         /// </summary>
         public static BindableProperty<string> CurrentTool = new(Constant.TOOL_HAND);
+
+        /// <summary>
+        /// 当前成熟的数量
+        /// </summary>
+        public static int RipeAndHarvestCountInCurrentDay = 0;
     }
 
     public class Constant

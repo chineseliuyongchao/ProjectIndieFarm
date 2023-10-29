@@ -8,16 +8,16 @@ namespace ProjectlndieFram
     /// </summary>
     public partial class GameController : ViewController
     {
-        private void Start()
-        {
-            Global.FruitCount.Register(fruitCount =>
-            {
-                //目前收获果实就游戏结束
-                if (fruitCount == 1)
-                {
-                    ActionKit.Delay(1, () => { SceneManager.LoadScene("PassScene"); }).Start(this);
-                }
-            }).UnRegisterWhenGameObjectDestroyed(gameObject);
-        }
+        // private void Start()
+        // {
+        //     Global.FruitCount.Register(fruitCount =>
+        //     {
+        //         //目前收获果实就游戏结束
+        //         if (fruitCount == 1)
+        //         {
+        //             ActionKit.Delay(1, () => { SceneManager.LoadScene("PassScene"); }).Start(this);
+        //         }
+        //     }).UnRegisterWhenGameObjectDestroyed(gameObject);
+        // }
     }
 }
