@@ -1,4 +1,5 @@
-﻿using QFramework;
+﻿using System.Collections.Generic;
+using QFramework;
 
 namespace ProjectlndieFram
 {
@@ -22,7 +23,28 @@ namespace ProjectlndieFram
         /// <summary>
         /// 当前成熟的数量
         /// </summary>
-        public static int RipeAndHarvestCountInCurrentDay = 0;
+        public static BindableProperty<int> RipeAndHarvestCountInCurrentDay = new(0);
+
+        /// <summary>
+        /// 存放所有挑战
+        /// </summary>
+        public static List<Challenge> Challenges = new List<Challenge>()
+        {
+            new ChallengeRipeAndHarvestTwoFruitsInOneDay()
+            {
+                Name = "ChallengeRipeAndHarvestTwoFruitsInOneDay"
+            }
+        };
+
+        /// <summary>
+        /// 收割植物的事件
+        /// </summary>
+        public static EasyEvent<Plant> OnPlantHarvest = new();
+
+        /// <summary>
+        /// 挑战完成的事件
+        /// </summary>
+        public static EasyEvent<Challenge> OnChallengeFinish = new();
     }
 
     public class Constant

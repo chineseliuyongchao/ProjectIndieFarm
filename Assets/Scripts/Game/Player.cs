@@ -18,7 +18,7 @@ namespace ProjectlndieFram
         {
             Global.Days.Register(day =>
             {
-                Global.RipeAndHarvestCountInCurrentDay = 0;
+                Global.RipeAndHarvestCountInCurrentDay.Value = 0;
                 var soilDataS = grid.GetComponent<GridController>().MShowGrid;
                 PlantController.Instance.Plants.ForEach((x, y, plant) =>
                 {
@@ -171,16 +171,7 @@ namespace ProjectlndieFram
                              gridData[cellPosition.x, cellPosition.y].PlantStates == PlantStates.Ripe &&
                              Global.CurrentTool.Value == Constant.TOOL_HAND) //收获果实
                     {
-                        if (PlantController.Instance.Plants[cellPosition.x, cellPosition.y].RipeDay ==
-                            Global.Days.Value) //当天有两个果子同时成熟并且收获就可以通关
-                        {
-                            Global.RipeAndHarvestCountInCurrentDay++;
-                            if (Global.RipeAndHarvestCountInCurrentDay >= 2)
-                            {
-                                ActionKit.Delay(1, () => { SceneManager.LoadScene("PassScene"); }).Start(this);
-                            }
-                        }
-
+                        Global.OnPlantHarvest.Trigger(PlantController.Instance.Plants[cellPosition.x, cellPosition.y]);
                         var plantGameObj = PlantController.Instance.Plants[cellPosition.x, cellPosition.y];
                         var plant = plantGameObj.GetComponent<Plant>();
                         plant.PlantStates = PlantStates.Old;

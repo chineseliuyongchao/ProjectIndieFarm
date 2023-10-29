@@ -1,5 +1,6 @@
+using System.Linq;
 using QFramework;
-using UnityEngine.SceneManagement;
+using UnityEngine;
 
 namespace ProjectlndieFram
 {
@@ -8,16 +9,32 @@ namespace ProjectlndieFram
     /// </summary>
     public partial class GameController : ViewController
     {
-        // private void Start()
-        // {
-        //     Global.FruitCount.Register(fruitCount =>
-        //     {
-        //         //目前收获果实就游戏结束
-        //         if (fruitCount == 1)
-        //         {
-        //             ActionKit.Delay(1, () => { SceneManager.LoadScene("PassScene"); }).Start(this);
-        //         }
-        //     }).UnRegisterWhenGameObjectDestroyed(gameObject);
-        // }
+        private void Start()
+        {
+            Global.OnChallengeFinish.Register(challenge => { Debug.Log("challengeFinish:  " + challenge.Name); })
+                .UnRegisterWhenGameObjectDestroyed(gameObject);
+        }
+
+        private void Update()
+        {
+            foreach (var challenge in Global.Challenges.Where(challenge =>
+                         challenge.ChallengeStates != ChallengeStates.FINISHED))
+            {
+                if (challenge.ChallengeStates == ChallengeStates.NO_START)
+                {
+                    challenge.OnStart();
+                    challenge.ChallengeStates = ChallengeStates.STARTED;
+                }
+                else if (challenge.ChallengeStates == ChallengeStates.STARTED)
+                {
+                    if (challenge.CheckFinish())
+                    {
+                        challenge.OnFinish();
+                        challenge.ChallengeStates = ChallengeStates.FINISHED;
+                        Global.OnChallengeFinish.Trigger(challenge);
+                    }
+                }
+            }
+        }
     }
 }
