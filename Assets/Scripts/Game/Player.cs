@@ -147,6 +147,7 @@ namespace ProjectlndieFram
                     {
                         tilemap.SetTile(cellPosition, grid.GetComponent<GridController>().tileBaseLand);
                         gridData[cellPosition.x, cellPosition.y] = new SoilData();
+                        AudioController.Singlention.SfxShovelDig.Play();
                     }
                     else if (gridData[cellPosition.x, cellPosition.y] != null &&
                              !gridData[cellPosition.x, cellPosition.y].HasPlant &&
@@ -201,21 +202,25 @@ namespace ProjectlndieFram
             if (Input.GetKeyDown(KeyCode.Alpha1))
             {
                 Global.CurrentTool.Value = Constant.TOOL_HAND;
+                AudioController.Singlention.SfxTake.Play();
             }
 
             if (Input.GetKeyDown(KeyCode.Alpha2))
             {
                 Global.CurrentTool.Value = Constant.TOOL_SHOVEL;
+                AudioController.Singlention.SfxTake.Play();
             }
 
             if (Input.GetKeyDown(KeyCode.Alpha3))
             {
                 Global.CurrentTool.Value = Constant.TOOL_SEED;
+                AudioController.Singlention.SfxTake.Play();
             }
 
             if (Input.GetKeyDown(KeyCode.Alpha4))
             {
                 Global.CurrentTool.Value = Constant.TOOL_BUCKET;
+                AudioController.Singlention.SfxTake.Play();
             }
         }
     }
